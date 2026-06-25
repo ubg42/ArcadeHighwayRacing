@@ -95,11 +95,10 @@ function addLocalBridge() {
     clearTimeout(bridgeTimeout)
 
     if (bridgeScript && bridgeScript.parentNode) {
-        bridgeScript.onload = null
-        bridgeScript.onerror = null
-        bridgeScript.src = ''
-        bridgeScript.parentNode.removeChild(bridgeScript)
-    }
+bridgeScript.onload = () => {
+    console.log("Bridge script loaded");
+    initializeBridge();
+}
 
     const scriptElement = document.createElement('script')
     scriptElement.src = './playgama-bridge.js'
