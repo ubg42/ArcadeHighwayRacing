@@ -1,4 +1,10 @@
+window.addEventListener("error", e => {
+    console.error("Global Error:", e.error || e.message);
+});
 
+window.addEventListener("unhandledrejection", e => {
+    console.error("Unhandled Promise Rejection:", e.reason);
+});
 if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     let meta = document.createElement('meta')
     meta.name = 'viewport'
@@ -110,6 +116,13 @@ bridgeScript.onload = () => {
 
 addLocalBridge();
 function initializeBridge() {
+    bridge.initialize()
+    .then(() => {
+        console.log("Bridge initialized");
+        // existing code
+    })
+    .catch(error => {
+        console.error("Bridge initialize failed:", error);
     clearTimeout(bridgeTimeout)
     bridge.engine = 'unity'
     bridge
