@@ -123,7 +123,7 @@ function initializeBridge() {
     scriptElement.onload = function() {
         initializeBridge()
     }
-}
+
 
 addLocalBridge();
 function initializeBridge() {
