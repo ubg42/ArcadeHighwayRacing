@@ -1,3 +1,4 @@
+
 if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     let meta = document.createElement('meta')
     meta.name = 'viewport'
@@ -108,18 +109,7 @@ function addLocalBridge() {
     }
 }
 
-bridgeScript = document.createElement('script')
-bridgeScript.src = './v1/stable/playgama-bridge.js'
-bridgeScript.onload = initializeBridge
-bridgeScript.onerror = addLocalBridge
-
-bridgeTimeout = setTimeout(() => {
-    console.warn('CDN bridge failed to load within 2 seconds, loading local bridge')
-    addLocalBridge()
-}, 2000)
-
-document.head.appendChild(bridgeScript)
-
+addLocalBridge();
 function initializeBridge() {
     clearTimeout(bridgeTimeout)
     bridge.engine = 'unity'
