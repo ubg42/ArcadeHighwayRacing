@@ -178,7 +178,6 @@ function initializeBridge() {
         })
         .catch(error => console.error(error))
 });
-
 // platform
 window.getPlatformId = function() {
     return bridge.platform.id
