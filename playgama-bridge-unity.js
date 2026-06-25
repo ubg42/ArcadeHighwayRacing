@@ -166,7 +166,7 @@ function initializeBridge() {
             document.body.appendChild(unityLoader)
         })
         .catch(error => console.error(error))
-}
+})
 
 // platform
 window.getPlatformId = function() {
