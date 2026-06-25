@@ -96,14 +96,25 @@ let bridgeTimeout = null
 let bridgeLoaded = false
 
 function addLocalBridge() {
-    if (bridgeLoaded) return
-    bridgeLoaded = true
-    clearTimeout(bridgeTimeout)
+    const scriptElement = document.createElement('script');
+    scriptElement.src = './playgama-bridge.js';
+    scriptElement.onload = initializeBridge;
+    document.body.appendChild(scriptElement);
+}
 
-    if (bridgeScript && bridgeScript.parentNode) {
-bridgeScript.onload = () => {
-    console.log("Bridge script loaded");
-    initializeBridge();
+addLocalBridge();
+
+function initializeBridge() {
+    clearTimeout(bridgeTimeout);
+    bridge.engine = 'unity';
+
+    bridge.initialize()
+        .then(() => {
+            console.log("Bridge initialized");
+        })
+        .catch(error => {
+            console.error("Bridge initialize failed:", error);
+        });
 }
 
     const scriptElement = document.createElement('script')
