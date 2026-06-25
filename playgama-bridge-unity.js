@@ -124,7 +124,6 @@ function initializeBridge() {
         initializeBridge()
     }
 
-
 addLocalBridge();
 function initializeBridge() {
     bridge.initialize()
